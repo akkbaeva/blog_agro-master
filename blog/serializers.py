@@ -9,6 +9,7 @@ class PostSearchSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
+    category = serializers.StringRelatedField()
     class Meta:
         model = Post
         fields = ('id', 'category', 'slug', 'title', 'descriptions', 'image', 'created_at', 'price', 'favourite')

@@ -97,6 +97,8 @@ class PostUpdateView(generics.UpdateAPIView):
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('id', )
 
     def get_permissions(self):
         if self.request.method == 'POST':
@@ -104,6 +106,8 @@ class CategoryListView(generics.ListAPIView):
         else:
             self.permission_classes = (AllowAny,)
         return [permission() for permission in self.permission_classes]
+
+
 #
 #
 # class CommentListCreateView(generics.ListCreateAPIView):
